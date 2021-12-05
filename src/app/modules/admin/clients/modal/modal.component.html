@@ -1,0 +1,143 @@
+<ng-container *transloco="let t">
+    <h2 mat-dialog-title>{{ t(data.action) }} Cliente</h2>
+</ng-container>
+
+<form [formGroup]="clientFormGroup" (ngSubmit)="submit($event)">
+    <mat-dialog-content class="mat-typography" fuseScrollbar>
+
+        <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
+            <div class="gt-xs:max-w-80 gt-xs:pr-12">
+                <p class="text-lg font-medium">Perfil</p>
+                <p class="text-secondary mb-6">
+                    <!--People here will get to know you with this information-->
+                </p>
+            </div>
+            <div class="flex-auto min-w-64">
+                <div class="flex">
+                    <mat-form-field class="flex-auto">
+                        <mat-label>Nombre</mat-label>
+                        <input
+                            matInput
+                            formControlName="name"
+                            [placeholder]="'Nombre'">
+                        <mat-icon
+                            class="icon-size-5"
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        <mat-error *ngFor="let error of formControlValidationService.getErrors(clientFormGroup.get('name'))">
+                            {{ error }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex">
+                    <mat-form-field class="flex-auto">
+                        <mat-label>Apellido Paterno</mat-label>
+                        <input
+                            matInput
+                            formControlName="firstName"
+                            [placeholder]="'Apellido Paterno'">
+                        <mat-icon
+                            class="icon-size-5"
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        <mat-error *ngFor="let error of formControlValidationService.getErrors(clientFormGroup.get('firstName'))">
+                            {{ error }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex">
+                    <mat-form-field class="flex-auto">
+                        <mat-label>Apellido Materno</mat-label>
+                        <input
+                            matInput
+                            formControlName="lastName"
+                            [placeholder]="'Apellido Materno'">
+                        <mat-icon
+                            class="icon-size-5"
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        <mat-error *ngFor="let error of formControlValidationService.getErrors(clientFormGroup.get('lastName'))">
+                            {{ error }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex">
+                    <mat-form-field class="fuse-mat-textarea flex-auto">
+                        <mat-label>Dirección</mat-label>
+                        <textarea
+                            matInput
+                            formControlName="address"
+                            [placeholder]="'Dirección'"
+                            [rows]="3"></textarea>
+                        <mat-icon
+                            class="icon-size-5"
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:menu-alt-2'"></mat-icon>
+                        <mat-error *ngFor="let error of formControlValidationService.getErrors(clientFormGroup.get('address'))">
+                            {{ error }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <mat-divider class="mt-4 mb-12"></mat-divider>
+
+        <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
+            <div class="gt-xs:max-w-80 gt-xs:pr-12">
+                <p class="text-lg font-medium">Información básica</p>
+                <p class="text-secondary mb-6">
+                    <!--People here will get to know you with this information-->
+                </p>
+            </div>
+            <div class="flex-auto min-w-64">
+                <div class="flex">
+                    <mat-form-field class="flex-auto">
+                        <mat-label>Correo Electronico</mat-label>
+                        <input
+                            matInput
+                            formControlName="email"
+                            [placeholder]="'example@example.com'">
+                        <mat-icon
+                            class="icon-size-5"
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                        <mat-error *ngFor="let error of formControlValidationService.getErrors(clientFormGroup.get('email'))">
+                            {{ error }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex">
+                    <mat-form-field class="flex-auto">
+                        <mat-label>Numero telefonico</mat-label>
+                        <input
+                            matInput
+                            type="number"
+                            maxlength="10"
+                            formControlName="phoneNumber"
+                            [placeholder]="'9711111111'">
+                        <mat-icon
+                            class="icon-size-5"
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                        <mat-error *ngFor="let error of formControlValidationService.getErrors(clientFormGroup.get('phoneNumber'))">
+                            {{ error }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="bg-gray-50 dark:bg-gray-700 border-t custom-actions-modal">
+        <button mat-button mat-dialog-close
+                type="button">Cancelar</button>
+        <button mat-flat-button
+                type="submit"
+                [color]="'primary'"
+                [disabled]="clientFormGroup.invalid"
+                cdkFocusInitial>Guardar
+        </button>
+    </mat-dialog-actions>
+</form>
+

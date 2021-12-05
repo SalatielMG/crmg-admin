@@ -1,0 +1,12 @@
+<fuse-alert
+    class="mt-8 -mb-4 custom-alert-app md:w-4/12 lg:w-4/12 xl:w-4/12 "
+    [name]="name"
+    [dismissed]="true"
+    dismissible
+    [appearance]="'fill'"
+    [showIcon]="true"
+    [type]="type"
+    [@fadeIn]="true">
+    <span fuseAlertTitle *ngIf="body.title">{{ body.title }}</span>
+    {{ body.message }}
+</fuse-alert>

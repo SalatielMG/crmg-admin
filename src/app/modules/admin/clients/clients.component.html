@@ -1,0 +1,322 @@
+<div class="absolute inset-0 flex flex-col min-w-0"
+     [fuseScrollbarOptions]="{wheelPropagation: false, suppressScrollX: true}"
+     fuseScrollbar>
+
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Clientes
+                </h2>
+            </div>
+        </div>
+        <!-- Actions -->
+        <!--<div class="flex flex-shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">-->
+        <!--<button-->
+        <!--class="ml-3"-->
+        <!--mat-flat-button-->
+        <!--[color]="'primary'">-->
+        <!--<mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>-->
+        <!--<span class="ml-2 mr-1">Agregar</span>-->
+        <!--</button>-->
+        <!--</div>-->
+    </div>
+
+    <!-- Main -->
+    <div
+        class="flex-auto p-6 sm:p-10"
+    >
+
+        <!-- CONTENT GOES HERE -->
+        <div class="flex flex-wrap items-start w-full max-w-400 justify-evenly">
+            <ng-container *ngFor="let client of clientState.clients">
+                <fuse-card
+                    [id]="client.id"
+                    [flippable]="true"
+                    #fuseCard>
+                    <ng-container fuseCardFront>
+                        <div class="flex flex-col items-center max-w-80 w-full p-8 pb-6 filter-info">
+                            <img
+                                class="w-32 h-32 rounded-full"
+                                src="assets/images/avatars/male-04.jpg"
+                                alt="Card cover image">
+                            <div class="text-2xl font-semibold leading-tight text-center mt-8">{{ client.name }} {{ client.firstName }} {{ client.lastName }}</div>
+                            <div class="text-secondary leading-tight text-center mt-1">{{ client.address }}</div>
+                            <hr class="w-full border-t mt-8 mb-0">
+                            <div class="w-full flex items-center justify-between my-4 px-2">
+                                <div class="flex flex-col items-center">
+                                    <span class="font-bold">1.2k</span>
+                                    <span class="text-sm font-medium text-secondary">POSTS</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <span class="font-bold">200k</span>
+                                    <span class="text-sm font-medium text-secondary">FOLLOWERS</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <span class="font-bold">1.2k</span>
+                                    <span class="text-sm font-medium text-secondary">FOLLOWING</span>
+                                </div>
+                            </div>
+                            <hr class="w-full border-t mt-0 mb-8">
+                            <div class="text-center text-secondary">I’m a friendly kitchen assistant who suffers from a severe
+                                phobia of buttons
+                            </div>
+                            <button
+                                class="px-6 mt-4"
+                                mat-button
+                                [color]="'primary'"
+                                [routerLink]="['./']"
+                                (click)="fuseCard.face = 'back'">
+                                More about Brian
+                            </button>
+                        </div>
+                    </ng-container>
+                    <ng-container fuseCardBack>
+                        <div class="flex flex-col items-center max-w-80 w-full p-8 pb-6 filter-info">
+                            <div class="mb-2 -mx-3">
+                                <button
+                                    mat-icon-button
+                                    [color]="'primary'"
+                                    (click)="fuseCard.face = 'front'">
+                                    <mat-icon
+                                        class="icon-size-5"
+                                        [svgIcon]="'heroicons_outline:arrow-left'"></mat-icon>
+                                </button>
+                            </div>
+                            <div class="text-2xl font-semibold leading-tight">About Me</div>
+                            <div class="mt-4">
+                                I’m a friendly kitchen assistant who suffers from a severe phobia of buttons.
+                                <br><br>
+                                Brother of Elijah Jay Watkins, who has phobia of buttons and trust issues.
+                            </div>
+                            <hr class="w-full border-t my-6">
+                            <div class="flex flex-col">
+                                <div class="flex items-center">
+                                    <mat-icon
+                                        class="icon-size-5 mr-3"
+                                        [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                                    <span class="leading-none">{{ client.address }}</span>
+                                </div>
+                                <div class="flex items-center mt-4">
+                                    <mat-icon
+                                        class="icon-size-5 mr-3"
+                                        [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                                    <span class="leading-none">{{ client.email }}</span>
+                                </div>
+                                <div class="flex items-center mt-4">
+                                    <mat-icon
+                                        class="icon-size-5 mr-3"
+                                        [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                                    <span class="leading-none">{{ client.phoneNumber }}</span>
+                                </div>
+                            </div>
+                            <button
+                                class="px-6 mt-8"
+                                mat-flat-button
+                                [color]="'primary'"
+                                [routerLink]="['./']">
+                                See complete bio
+                            </button>
+                        </div>
+                    </ng-container>
+
+                </fuse-card>
+            </ng-container>
+            <!---->
+            <!--<fuse-card-->
+                <!--[id]="2"-->
+                <!--[flippable]="true"-->
+                <!--#fuseCard>-->
+                <!--<ng-container fuseCardFront>-->
+                    <!--<div class="flex flex-col items-center max-w-80 w-full p-8 pb-6 filter-info">-->
+                        <!--<img-->
+                            <!--class="w-32 h-32 rounded-full"-->
+                            <!--src="assets/images/avatars/male-04.jpg"-->
+                            <!--alt="Card cover image">-->
+                        <!--<div class="text-2xl font-semibold leading-tight text-center mt-8">Brian Hughes</div>-->
+                        <!--<div class="text-secondary leading-tight text-center mt-1">London, UK</div>-->
+                        <!--<hr class="w-full border-t mt-8 mb-0">-->
+                        <!--<div class="w-full flex items-center justify-between my-4 px-2">-->
+                            <!--<div class="flex flex-col items-center">-->
+                                <!--<span class="font-bold">1.2k</span>-->
+                                <!--<span class="text-sm font-medium text-secondary">POSTS</span>-->
+                            <!--</div>-->
+                            <!--<div class="flex flex-col items-center">-->
+                                <!--<span class="font-bold">200k</span>-->
+                                <!--<span class="text-sm font-medium text-secondary">FOLLOWERS</span>-->
+                            <!--</div>-->
+                            <!--<div class="flex flex-col items-center">-->
+                                <!--<span class="font-bold">1.2k</span>-->
+                                <!--<span class="text-sm font-medium text-secondary">FOLLOWING</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<hr class="w-full border-t mt-0 mb-8">-->
+                        <!--<div class="text-center text-secondary">I’m a friendly kitchen assistant who suffers from a severe-->
+                            <!--phobia of buttons-->
+                        <!--</div>-->
+                        <!--<button-->
+                            <!--class="px-6 mt-4"-->
+                            <!--mat-button-->
+                            <!--[color]="'primary'"-->
+                            <!--[routerLink]="['./']"-->
+                            <!--(click)="fuseCard.face = 'back'">-->
+                            <!--More about Brian-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</ng-container>-->
+                <!--<ng-container fuseCardBack>-->
+                    <!--<div class="flex flex-col items-center max-w-80 w-full p-8 pb-6 filter-info">-->
+                        <!--<div class="mb-2 -mx-3">-->
+                            <!--<button-->
+                                <!--mat-icon-button-->
+                                <!--[color]="'primary'"-->
+                                <!--(click)="fuseCard.face = 'front'">-->
+                                <!--<mat-icon-->
+                                    <!--class="icon-size-5"-->
+                                    <!--[svgIcon]="'heroicons_outline:arrow-left'"></mat-icon>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                        <!--<div class="text-2xl font-semibold leading-tight">About Me</div>-->
+                        <!--<div class="mt-4">-->
+                            <!--I’m a friendly kitchen assistant who suffers from a severe phobia of buttons.-->
+                            <!--<br><br>-->
+                            <!--Brother of Elijah Jay Watkins, who has phobia of buttons and trust issues.-->
+                        <!--</div>-->
+                        <!--<hr class="w-full border-t my-6">-->
+                        <!--<div class="flex flex-col">-->
+                            <!--<div class="flex items-center">-->
+                                <!--<mat-icon-->
+                                    <!--class="icon-size-5 mr-3"-->
+                                    <!--[svgIcon]="'heroicons_solid:location-marker'"></mat-icon>-->
+                                <!--<span class="leading-none">London, UK</span>-->
+                            <!--</div>-->
+                            <!--<div class="flex items-center mt-4">-->
+                                <!--<mat-icon-->
+                                    <!--class="icon-size-5 mr-3"-->
+                                    <!--[svgIcon]="'heroicons_solid:briefcase'"></mat-icon>-->
+                                <!--<span class="leading-none">ACME Corp. Lead UX Designer</span>-->
+                            <!--</div>-->
+                            <!--<div class="flex items-center mt-4">-->
+                                <!--<mat-icon-->
+                                    <!--class="icon-size-5 mr-3"-->
+                                    <!--[svgIcon]="'heroicons_solid:cake'"></mat-icon>-->
+                                <!--<span class="leading-none">April, 24</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<button-->
+                            <!--class="px-6 mt-8"-->
+                            <!--mat-flat-button-->
+                            <!--[color]="'primary'"-->
+                            <!--[routerLink]="['./']">-->
+                            <!--See complete bio-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</ng-container>-->
+
+            <!--</fuse-card>-->
+            <!--<fuse-card-->
+                <!--[id]="3"-->
+                <!--[flippable]="true"-->
+                <!--#fuseCard>-->
+                <!--<ng-container fuseCardFront>-->
+                    <!--<div class="flex flex-col items-center max-w-80 w-full p-8 pb-6 filter-info">-->
+                        <!--<img-->
+                            <!--class="w-32 h-32 rounded-full"-->
+                            <!--src="assets/images/avatars/male-04.jpg"-->
+                            <!--alt="Card cover image">-->
+                        <!--<div class="text-2xl font-semibold leading-tight text-center mt-8">Brian Hughes</div>-->
+                        <!--<div class="text-secondary leading-tight text-center mt-1">London, UK</div>-->
+                        <!--<hr class="w-full border-t mt-8 mb-0">-->
+                        <!--<div class="w-full flex items-center justify-between my-4 px-2">-->
+                            <!--<div class="flex flex-col items-center">-->
+                                <!--<span class="font-bold">1.2k</span>-->
+                                <!--<span class="text-sm font-medium text-secondary">POSTS</span>-->
+                            <!--</div>-->
+                            <!--<div class="flex flex-col items-center">-->
+                                <!--<span class="font-bold">200k</span>-->
+                                <!--<span class="text-sm font-medium text-secondary">FOLLOWERS</span>-->
+                            <!--</div>-->
+                            <!--<div class="flex flex-col items-center">-->
+                                <!--<span class="font-bold">1.2k</span>-->
+                                <!--<span class="text-sm font-medium text-secondary">FOLLOWING</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<hr class="w-full border-t mt-0 mb-8">-->
+                        <!--<div class="text-center text-secondary">I’m a friendly kitchen assistant who suffers from a severe-->
+                            <!--phobia of buttons-->
+                        <!--</div>-->
+                        <!--<button-->
+                            <!--class="px-6 mt-4"-->
+                            <!--mat-button-->
+                            <!--[color]="'primary'"-->
+                            <!--[routerLink]="['./']"-->
+                            <!--(click)="fuseCard.face = 'back'">-->
+                            <!--More about Brian-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</ng-container>-->
+                <!--<ng-container fuseCardBack>-->
+                    <!--<div class="flex flex-col items-center max-w-80 w-full p-8 pb-6 filter-info">-->
+                        <!--<div class="mb-2 -mx-3">-->
+                            <!--<button-->
+                                <!--mat-icon-button-->
+                                <!--[color]="'primary'"-->
+                                <!--(click)="fuseCard.face = 'front'">-->
+                                <!--<mat-icon-->
+                                    <!--class="icon-size-5"-->
+                                    <!--[svgIcon]="'heroicons_outline:arrow-left'"></mat-icon>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                        <!--<div class="text-2xl font-semibold leading-tight">About Me</div>-->
+                        <!--<div class="mt-4">-->
+                            <!--I’m a friendly kitchen assistant who suffers from a severe phobia of buttons.-->
+                            <!--<br><br>-->
+                            <!--Brother of Elijah Jay Watkins, who has phobia of buttons and trust issues.-->
+                        <!--</div>-->
+                        <!--<hr class="w-full border-t my-6">-->
+                        <!--<div class="flex flex-col">-->
+                            <!--<div class="flex items-center">-->
+                                <!--<mat-icon-->
+                                    <!--class="icon-size-5 mr-3"-->
+                                    <!--[svgIcon]="'heroicons_solid:location-marker'"></mat-icon>-->
+                                <!--<span class="leading-none">London, UK</span>-->
+                            <!--</div>-->
+                            <!--<div class="flex items-center mt-4">-->
+                                <!--<mat-icon-->
+                                    <!--class="icon-size-5 mr-3"-->
+                                    <!--[svgIcon]="'heroicons_solid:briefcase'"></mat-icon>-->
+                                <!--<span class="leading-none">ACME Corp. Lead UX Designer</span>-->
+                            <!--</div>-->
+                            <!--<div class="flex items-center mt-4">-->
+                                <!--<mat-icon-->
+                                    <!--class="icon-size-5 mr-3"-->
+                                    <!--[svgIcon]="'heroicons_solid:cake'"></mat-icon>-->
+                                <!--<span class="leading-none">April, 24</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<button-->
+                            <!--class="px-6 mt-8"-->
+                            <!--mat-flat-button-->
+                            <!--[color]="'primary'"-->
+                            <!--[routerLink]="['./']">-->
+                            <!--See complete bio-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</ng-container>-->
+
+            <!--</fuse-card>-->
+        </div>
+
+    </div>
+
+</div>
+<button mat-fab
+        aria-label="Agregar Cliente"
+        [color]="'primary'"
+        (click)="openDialog('Add')"
+        class="absolute bottom-7 right-7">
+    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+</button>
