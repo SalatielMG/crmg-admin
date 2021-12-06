@@ -30,7 +30,7 @@
         "@angular/platform-browser": "12.2.3",
         "@angular/platform-browser-dynamic": "12.2.3",
         "@angular/router": "12.2.3",
-        "@fullcalendar/angular": "4.4.5-beta",
+        "@fullcalendar/angular": "^5.10.1",
         "@fullcalendar/core": "4.4.2",
         "@fullcalendar/daygrid": "4.4.2",
         "@fullcalendar/interaction": "4.4.2",
@@ -58,7 +58,7 @@
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "12.2.3",
-        "@angular-eslint/builder": "12.3.1",
+        "@angular-eslint/builder": "^13.0.1",
         "@angular-eslint/eslint-plugin": "12.3.1",
         "@angular-eslint/eslint-plugin-template": "12.3.1",
         "@angular-eslint/schematics": "12.3.1",
