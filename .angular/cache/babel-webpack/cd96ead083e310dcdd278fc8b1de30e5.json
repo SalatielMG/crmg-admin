@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  production: false,\n  urlApi: 'http://localhost:9000/api/v1',\n  urlPrefix: '@api-prefix',\n  debugLog: true\n};","map":null,"metadata":{},"sourceType":"module"}

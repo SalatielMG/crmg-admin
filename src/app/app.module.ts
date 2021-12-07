@@ -16,6 +16,7 @@ import {MatPaginatorIntl} from '@angular/material/paginator';
 import {PaginatorIntlService} from './core/paginator/paginator-intl.service';
 import {SourceOfTruthInitiate} from 'gentleman-state-manager/lib/models/source-of-truth';
 import {GentlemanStateManagerModule} from 'gentleman-state-manager';
+import { StoreModule } from '@ngrx/store';
 
 const sourceOfTruthInititate: SourceOfTruthInitiate[] = [
     // {
@@ -53,7 +54,9 @@ const routerConfig: ExtraOptions = {
 
         ToastModule,
 
-        GentlemanStateManagerModule.forRoot(sourceOfTruthInititate)
+        GentlemanStateManagerModule.forRoot(sourceOfTruthInititate),
+
+        StoreModule.forRoot({}, {})
     ],
     bootstrap   : [
         AppComponent
