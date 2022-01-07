@@ -1,4 +1,4 @@
-import {IClientModel} from '@app/core/api/models/client.model';
+import {IClientModel} from '@app/core/api/models/client/client.model';
 
 export interface IClientsState {
     loading: boolean,

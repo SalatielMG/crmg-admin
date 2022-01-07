@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { clientsReducer } from '@app/state/reducers/client.reducer';\nexport const ROOT_REDUCERS = {\n  clients: clientsReducer\n};","map":null,"metadata":{},"sourceType":"module"}

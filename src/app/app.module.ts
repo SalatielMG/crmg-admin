@@ -17,6 +17,10 @@ import {PaginatorIntlService} from './core/paginator/paginator-intl.service';
 import {SourceOfTruthInitiate} from 'gentleman-state-manager/lib/models/source-of-truth';
 import {GentlemanStateManagerModule} from 'gentleman-state-manager';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {ROOT_REDUCERS} from '@app/state/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import {ClientEffects} from '@app/state/effects/client.effects';
 
 const sourceOfTruthInititate: SourceOfTruthInitiate[] = [
     // {
@@ -56,7 +60,13 @@ const routerConfig: ExtraOptions = {
 
         GentlemanStateManagerModule.forRoot(sourceOfTruthInititate),
 
-        StoreModule.forRoot({}, {})
+        StoreModule.forRoot(ROOT_REDUCERS),
+
+        StoreDevtoolsModule.instrument({ name: 'TEST' }),
+
+        EffectsModule.forRoot([
+            ClientEffects
+        ])
     ],
     bootstrap   : [
         AppComponent

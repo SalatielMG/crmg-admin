@@ -32,7 +32,8 @@
 
         <!-- CONTENT GOES HERE -->
         <div class="flex flex-wrap items-start w-full max-w-400 justify-evenly">
-            <ng-container *ngFor="let client of clientState.clients">
+            <p *ngIf="(loading$ | async)">Cargando ....</p>
+            <ng-container *ngFor="let client of clients$ | async">
                 <fuse-card
                     [id]="client.id"
                     [flippable]="true"

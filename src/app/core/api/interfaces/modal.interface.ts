@@ -1,5 +1,5 @@
 import {Action} from '@globals';
-import {ClientModel} from '@app/core/api/models/client.model';
+import {ClientModel} from '@app/core/api/models/client/client.model';
 
 export interface  IModalDataCrud<T> {
     action: Action,

@@ -4,12 +4,16 @@ import {ModalComponent} from '@app/modules/admin/clients/modal/modal.component';
 import {Action} from '@globals';
 import {ClientService} from '@app/core/api/services/client/client.service';
 import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {ClientModel} from '@app/core/api/models/client.model';
+import {Observable, Subject} from 'rxjs';
+import {ClientModel} from '@app/core/api/models/client/client.model';
 import {GentlemanStateService} from 'gentleman-state-manager';
 import {StoreKeys} from '@app/app.state';
 import {ClientsStateProperties, ClientsState} from '@app/modules/admin/clients/IClientsState';
 import {LogService} from '@app/core/log/log.service';
+import {Store} from '@ngrx/store';
+import {loadClients, loadedClients} from '@app/state/actions/clients.actions';
+import {selectListClients, selectLoading} from '@app/state/selectors/client.selector';
+import {AppState} from '@app/state/app.state';
 
 @Component({
     selector: 'app-clients',
@@ -21,6 +25,8 @@ export class ClientsComponent implements OnInit, OnDestroy {
     public screenWidth: any;
     public screenHeight: any;
     public clientState = new ClientsState();
+    public loading$: Observable<boolean> = new Observable();
+    public clients$: Observable<ReadonlyArray<ClientModel>> = new Observable();
 
     private onDestroy$: Subject<any> = new Subject();
 
@@ -28,16 +34,17 @@ export class ClientsComponent implements OnInit, OnDestroy {
         public dialog: MatDialog,
         private clientsService: ClientService,
         private gentlemanStateService: GentlemanStateService,
-        private logService: LogService
+        private logService: LogService,
+        private store: Store<AppState>
         ) {
-        this.gentlemanStateService
-            .getEntity(StoreKeys.CLIENTS_STATE)
-            .getObservable()
-            .pipe(
-                takeUntil(this.onDestroy$)
-            ).subscribe((clientState: ClientsState) => {
-                this.clientState = clientState
-            });
+        // this.gentlemanStateService
+        //     .getEntity(StoreKeys.CLIENTS_STATE)
+        //     .getObservable()
+        //     .pipe(
+        //         takeUntil(this.onDestroy$)
+        //     ).subscribe((clientState: ClientsState) => {
+        //         this.clientState = clientState
+        //     });
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -47,6 +54,8 @@ export class ClientsComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.screenWidth = window.innerWidth;
         this.screenHeight = window.innerHeight;
+        this.loading$ = this.store.select(selectLoading);
+        this.clients$ = this.store.select(selectListClients);
         this.getClients();
     }
 
@@ -90,22 +99,14 @@ export class ClientsComponent implements OnInit, OnDestroy {
     }
 
     getClients = () => {
-        this.gentlemanStateService
-            .getEntity(StoreKeys.CLIENTS_STATE)
-            .setObservableValues(true, ClientsStateProperties.LOADING_PROPERTY, true);
-        this.clientsService.getClients()
-            .pipe(takeUntil(this.onDestroy$))
-            .subscribe((clients: ClientModel[]) => {
-                this.setClients(new ClientsState(true, clients), true);
-            }, error => {
-                this.setClients(new ClientsState(true), true);
-            });
-    }
-
-    private setClients = (clientsState: ClientsState, emit?: boolean) => {
-        this.gentlemanStateService
-            .getEntity(StoreKeys.CLIENTS_STATE)
-            .setObservableValues(clientsState, null, emit);
+        this.store.dispatch(loadClients());
+        // this.clientsService.getClients()
+        //     .pipe(takeUntil(this.onDestroy$))
+        //     .subscribe((clients: ClientModel[]) => {
+        //         this.store.dispatch(loadedClients({ clients }));
+        //     }, error => {
+        //         this.store.dispatch(loadedClients({ clients: [] }));
+        //     });
     }
 
 }

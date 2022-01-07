@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {ClientModel, IClientModel} from '@app/core/api/models/client.model';
+import {ClientModel, IClientModel} from '@app/core/api/models/client/client.model';
 import {HttpClient} from '@angular/common/http';
 import {PREFIX_API} from '@globals';
 import {Observable, ReplaySubject} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
+import {ResponseClient} from '@app/core/api/interfaces/client/reponse.api.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -41,7 +42,7 @@ export class ClientService {
     }
 
     public create = (client: IClientModel) => {
-        return this.httpClient.post(`${PREFIX_API}/client`, { ... client });
+        return this.httpClient.post<ResponseClient>(`${PREFIX_API}/client`, { ... client });
     }
 
     public update = () => {
